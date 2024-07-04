@@ -1,0 +1,42 @@
+/* Style for the loader */
+/* .loader {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    margin: -25px 0 0 -25px;
+    border: 10px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 10px solid #3498db;
+    animation: spin 2s linear infinite;
+} */
+
+#loader {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin: -25px 0 0 -25px;
+    background: radial-gradient(farthest-side,#A9CB37 94%,#0000) top/6.4px 6.4px no-repeat,
+           conic-gradient(#0000 30%,#A9CB37);
+    -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 6.4px),#000 0);
+    animation: rotation 1.2s infinite linear;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Hide the content initially */
+#content {
+    display: none;
+}

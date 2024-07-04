@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Open App</title>
+</head>
+<body>
+    <button id="openAppButton">Open App</button>
+
+    <script>
+        document.getElementById('openAppButton').addEventListener('click', function() {
+            var timeout;
+            var t = 1000; // Timeout duration in milliseconds
+
+            var iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = 'wingbankuat://payment?orderId=ORDER000215953&amount=2.00&currency=USD&merchant_name=Loda 20(Cambodia) 20Co., 20Ltd&merchant_id=00437&serviceType=BILLPAYON&integrationType=MOBAPP&qrString=00020101021230460008aka@wing0105004370209BILLPAYON0308MERCHANT52045262530384054042.005802KH5924Loda 20(Cambodia) 20Co., 20Ltd6008MERCHANT610512000623101090863f1c990414ORDER000215953630483E9'; // Custom URL scheme for the app
+            document.body.appendChild(iframe);
+
+            var start = Date.now();
+
+            // Function to handle visibility change
+            function handleVisibilityChange() {
+                if (document.visibilityState === 'hidden') {
+                    clearTimeout(timeout);
+                }
+            }
+
+            document.addEventListener('visibilitychange', handleVisibilityChange);
+
+            timeout = setTimeout(function() {
+                document.removeEventListener('visibilitychange', handleVisibilityChange);
+                document.body.removeChild(iframe);
+                if (Date.now() - start < t + 100) {
+                    alert('App not installed');
+                }
+            }, t);
+        });
+    </script>
+</body>
+</html>
